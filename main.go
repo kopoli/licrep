@@ -32,8 +32,17 @@ func main() {
 	pkg, err := licrep.GetPackages(".", cwd)
 	checkFault(err, "Getting package licenses failed")
 
-	for i := range pkg {
-		fmt.Println(pkg[i].Name, "  ", pkg[i].License)
+	if opts.IsSet("show-license") {
+		show := opts.Get("show-license", "")
+		for i := range pkg {
+			switch show {
+			case "summary":
+				fmt.Println(pkg[i].Name, "  ", pkg[i].License)
+			case "full":
+				fmt.Println("* ", pkg[i].Name, "  ", pkg[i].License,
+					"\n", pkg[i].LicenseString, "\n")
+			}
+		}
 	}
 
 	os.Exit(0)

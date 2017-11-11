@@ -33,10 +33,10 @@ func Cli(opts util.Options, argsin []string) error {
 		opts.Set("ignore-packages", strings.Join(*optIgnore, " "))
 
 		if *optShowSummary {
-			opts.Set("show-license","summary")
+			opts.Set("show-license", "summary")
 		}
 		if *optShowLicenses {
-			opts.Set("show-license","full")
+			opts.Set("show-license", "full")
 		}
 	}
 
