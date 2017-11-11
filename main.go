@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 
 	util "github.com/kopoli/go-util"
 	licrep "github.com/kopoli/licrep/lib"
@@ -28,8 +29,10 @@ func main() {
 	err := licrep.Cli(opts, os.Args)
 	checkFault(err, "command line parsing failed")
 
-	cwd, _ := os.Getwd()
-	pkg, err := licrep.GetPackages(".", cwd)
+	dir, err := filepath.Abs(opts.Get("directory", "."))
+	checkFault(err, "Given directory not valid")
+
+	pkg, err := licrep.GetPackages(".", dir)
 	checkFault(err, "Getting package licenses failed")
 
 	if opts.IsSet("show-license") {

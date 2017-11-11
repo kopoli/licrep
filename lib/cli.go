@@ -20,8 +20,8 @@ func Cli(opts util.Options, argsin []string) error {
 	optPrefix := app.StringOpt("prefix", "", "Prefix given to the functions in the generated file.")
 	optIgnore := app.StringsOpt("i ignore", []string{"main"}, "Ignore given package names from the list.")
 
-	optShowSummary := app.BoolOpt("show-summary", false, "Show a license summary (no generating).")
-	optShowLicenses := app.BoolOpt("show-licenses", false, "Show the contents of all licenses (no generating).")
+	optShowSummary := app.BoolOpt("s show-summary", false, "Show a license summary (no generating).")
+	optShowLicenses := app.BoolOpt("L show-licenses", false, "Show the contents of all licenses (no generating).")
 
 	app.Version("v version", util.VersionString(opts))
 
