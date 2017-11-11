@@ -10,7 +10,7 @@ import (
 func Cli(opts util.Options, argsin []string) error {
 	progName := opts.Get("program-name", "licrep")
 
-	app := cli.App(progName, "Generate an embedded license report to your program")
+	app := cli.App(progName, "Generate an embedded license report to your program.")
 
 	app.Spec = "[OPTIONS]"
 
@@ -20,6 +20,9 @@ func Cli(opts util.Options, argsin []string) error {
 	optPrefix := app.StringOpt("prefix", "", "Prefix given to the functions in the generated file.")
 	optIgnore := app.StringsOpt("i ignore", []string{"main"}, "Ignore given package names from the list.")
 
+	optShowSummary := app.BoolOpt("show-summary", false, "Show a license summary (no generating).")
+	optShowLicenses := app.BoolOpt("show-licenses", false, "Show the contents of all licenses (no generating).")
+
 	app.Version("v version", util.VersionString(opts))
 
 	app.Action = func() {
@@ -28,6 +31,13 @@ func Cli(opts util.Options, argsin []string) error {
 		opts.Set("package", *optPackage)
 		opts.Set("prefix", *optPrefix)
 		opts.Set("ignore-packages", strings.Join(*optIgnore, " "))
+
+		if *optShowSummary {
+			opts.Set("show-license","summary")
+		}
+		if *optShowLicenses {
+			opts.Set("show-license","full")
+		}
 	}
 
 	return app.Run(argsin)
