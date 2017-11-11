@@ -1,30 +1,35 @@
 package licrep
 
 import (
+	"errors"
 	"fmt"
 	"go/build"
 	"path/filepath"
+	"sort"
 
 	"github.com/davecgh/go-spew/spew"
 	"github.com/ryanuber/go-license"
 )
 
+const (
+	UnknownLicense = "Unknown"
+)
+
 type Package struct {
-	Name    string
-	Dir     string
-	License string
+	Name          string
+	License       string
 	LicenseString string
 }
 
-func findLicense(dir string) (ret *license.License, err error) {
-	pkg, err := build.Import(".", dir, 0)
-	if err != nil {
-		return
+func findLicense(dir, root string) (ret *license.License, err error) {
+	d, _ := filepath.Split(dir)
+	if d == "" || d == root {
+		return nil, errors.New("No license found in parent directories")
 	}
 
-	ret, err = license.NewFromDir(pkg.Dir)
+	ret, err = license.NewFromDir(dir)
 	if err != nil {
-		return findLicense(filepath.Join(pkg.Dir, ".."))
+		return findLicense(filepath.Join(dir, ".."), root)
 	}
 
 	return
@@ -47,37 +52,48 @@ func GetPackages(pkgname string, dir string) (ret []Package, err error) {
 
 		fmt.Println(spew.Sdump(pkg))
 
-		_, ok := imports[pkg.Name]
+		_, ok := imports[pkg.ImportPath]
 		if ok {
 			return
 		}
 
 		p := Package{
-			Name:    pkg.Name,
-			Dir:     pkg.Dir,
+			Name: pkg.ImportPath,
 		}
 
-		l, err := findLicense(pkg.Dir)
+		l, err := findLicense(pkg.Dir, pkg.SrcRoot)
 		if err != nil {
-			p.License = "Unknown"
+			p.License = UnknownLicense
 		} else {
 			p.License = l.Type
 			p.LicenseString = l.Text
 		}
 
-		imports[pkg.Name] = p
+		imports[pkg.ImportPath] = p
 
 		for i := range pkg.Imports {
 			err = findImports(pkg.Imports[i], pkg.Dir)
-			// if err != nil {
-
-			// }
 		}
 		return
 	}
 
 	err = findImports(pkgname, dir)
 
-	fmt.Println(spew.Sdump(imports))
+	var names []string
+	for i := range imports {
+		names = append(names, i)
+	}
+	sort.Strings(names)
+	fmt.Println("NIMET ON", names)
+
+	ret = make([]Package, len(imports))
+	j := 0
+	for _, k := range names {
+		ret[j] = imports[k]
+		j++
+	}
+
+	// fmt.Println(spew.Sdump(imports))
+	// fmt.Println(spew.Sdump(ret))
 	return
 }

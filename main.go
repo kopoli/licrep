@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"strings"
 
 	util "github.com/kopoli/go-util"
 	licrep "github.com/kopoli/licrep/lib"
@@ -13,17 +12,9 @@ var (
 	Version = "0.1.0"
 )
 
-func printErr(err error, message string, arg ...string) {
-	msg := ""
+func checkFault(err error, arg ...interface{}) {
 	if err != nil {
-		msg = fmt.Sprintf(" (error: %s)", err)
-	}
-	fmt.Fprintf(os.Stderr, "Error: %s%s.%s\n", message, strings.Join(arg, " "), msg)
-}
-
-func checkFault(err error, message string, arg ...string) {
-	if err != nil {
-		printErr(err, message, arg...)
+		util.E.Print(err, arg...)
 		os.Exit(1)
 	}
 }
@@ -38,7 +29,12 @@ func main() {
 	checkFault(err, "command line parsing failed")
 
 	cwd, _ := os.Getwd()
-	licrep.GetPackages(".", cwd)
+	pkg, err := licrep.GetPackages(".", cwd)
+	checkFault(err, "Getting package licenses failed")
+
+	for i := range pkg {
+		fmt.Println(pkg[i].Name, "  ", pkg[i].License)
+	}
 
 	os.Exit(0)
 }
