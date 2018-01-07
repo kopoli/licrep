@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 
 	util "github.com/kopoli/go-util"
 	licrep "github.com/kopoli/licrep/lib"
@@ -25,6 +26,7 @@ func main() {
 
 	opts.Set("program-name", "licrep")
 	opts.Set("program-version", Version)
+	opts.Set("program-args", strings.Join(os.Args, " "))
 
 	err := licrep.Cli(opts, os.Args)
 	checkFault(err, "command line parsing failed")
@@ -46,6 +48,9 @@ func main() {
 					"\n", pkg[i].LicenseString, "\n")
 			}
 		}
+	} else {
+		err = licrep.GenerateEmbeddedLicenses(opts, pkg)
+		checkFault(err,"Generating embedded licenses failed")
 	}
 
 	os.Exit(0)
