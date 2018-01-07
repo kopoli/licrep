@@ -8,11 +8,11 @@ import (
 func Test_chunker_Write(t *testing.T) {
 	tests := []struct {
 		name       string
-		pos        int
+		linePos    int
 		lineLength int
 		input      string
 
-		output  string
+		output string
 	}{
 		{"Empty data", 0, 0, "", ""},
 		{"One line", 0, 4, "abc", "abc"},
@@ -25,7 +25,7 @@ func Test_chunker_Write(t *testing.T) {
 			buf := &bytes.Buffer{}
 			w := &chunker{
 				output:     buf,
-				pos:        tt.pos,
+				linePos:    tt.linePos,
 				lineLength: tt.lineLength,
 			}
 			got, err := w.Write([]byte(tt.input))

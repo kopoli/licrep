@@ -10,9 +10,11 @@ import (
 	util "github.com/kopoli/go-util"
 )
 
+// chunker is a writer which writes given data to output and emits a newline
+// every lineLength bytes received.
 type chunker struct {
 	output     io.Writer
-	pos        int
+	linePos    int
 	lineLength int
 }
 
@@ -20,36 +22,33 @@ type chunker struct {
 // a newline character.
 func (w *chunker) Write(p []byte) (int, error) {
 	if w.lineLength == 0 {
-		w.lineLength = 40
+		w.lineLength = 80
 	}
 
 	lines := 0
 
 	for idx := 0; idx < len(p); {
-		startpos := w.pos
-		writeLen := w.lineLength - w.pos
+		writeLen := w.lineLength - w.linePos
 		if writeLen+idx > len(p) {
 			writeLen = len(p) - idx
 		}
 
-		w.pos = (w.pos + writeLen) % w.lineLength
+		w.linePos = (w.linePos + writeLen) % w.lineLength
 
-		fmt.Println("Writing from idx", idx, "to", idx+writeLen, "full length", len(p), "wpos", w.pos, startpos)
 		writeLen, err := w.output.Write(p[idx : idx+writeLen])
 		if err != nil {
 			return 0, err
 		}
 
-		if w.pos == 0 {
-			fmt.Println("Writing a newline! startpos", startpos)
+		idx += writeLen
+
+		if w.linePos == 0 {
 			_, err = w.output.Write([]byte("\n"))
 			if err != nil {
 				return 0, err
 			}
 			lines += 1
 		}
-
-		idx += writeLen
 	}
 
 	return len(p) + lines, nil
