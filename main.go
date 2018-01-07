@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 
 	util "github.com/kopoli/go-util"
@@ -40,7 +41,13 @@ func main() {
 	if opts.IsSet("show-self-licenses") {
 		licenses, err := LicrepGetLicenses()
 		checkFault(err, "Internal error: License decoding failed")
+
+		var names []string
 		for i := range licenses {
+			names = append(names, i)
+		}
+		sort.Strings(names)
+		for _, i := range names {
 			fmt.Printf("* %s:\n\n%s\n\n", i, licenses[i].Text)
 		}
 		os.Exit(0)
