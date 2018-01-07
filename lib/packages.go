@@ -12,9 +12,12 @@ import (
 )
 
 const (
+	// UnknownLicense denotes the value of License of a Package for which
+	// the license is not detected.
 	UnknownLicense = "Unknown"
 )
 
+// Package reprsents an imported package
 type Package struct {
 	Name          string
 	License       string
@@ -35,6 +38,7 @@ func findLicense(dir, root string) (ret *license.License, err error) {
 	return
 }
 
+// GetPackages gets the dependencies of given pkgname in the given directory
 func GetPackages(pkgname string, dir string) (ret []Package, err error) {
 	imports := map[string]Package{}
 

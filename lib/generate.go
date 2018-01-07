@@ -49,7 +49,7 @@ func (w *chunker) Write(p []byte) (int, error) {
 			if err != nil {
 				return 0, err
 			}
-			lines += 1
+			lines++
 		}
 	}
 
@@ -67,8 +67,17 @@ func encodeData(input string) (out string, err error) {
 	}
 
 	_, err = w.Write([]byte(input))
-	w.Close()
-	bw.Close()
+	err2 := w.Close()
+	err3 := bw.Close()
+	if err != nil {
+		return
+	}
+	if err2 != nil {
+		err = err2
+	}
+	if err3 != nil {
+		err = err3
+	}
 	if err != nil {
 		return
 	}
@@ -78,6 +87,9 @@ func encodeData(input string) (out string, err error) {
 
 }
 
+// GenerateEmbeddedLicenses creates a compressed license representation to a
+// file or os.Stdout of the given Packages. The representation is go so it can
+// be built as part of a program.
 func GenerateEmbeddedLicenses(opts util.Options, pkgs []Package) (err error) {
 	licenseData := &bytes.Buffer{}
 	var str string
@@ -88,10 +100,6 @@ func GenerateEmbeddedLicenses(opts util.Options, pkgs []Package) (err error) {
 			if err != nil {
 				return
 			}
-
-			fmt.Printf("PKG: %s\nData:\n%s\nOriglen: %d\nPackedLen: %d\n",
-				pkgs[i].Name, str, len(pkgs[i].LicenseString), len(str),
-			)
 		}
 		licenseData.WriteString(fmt.Sprintf(`
 		"%s": Data{
@@ -119,7 +127,9 @@ func GenerateEmbeddedLicenses(opts util.Options, pkgs []Package) (err error) {
 			return
 		}
 		out = fp
-		defer fp.Close()
+		defer func() {
+			err = fp.Close()
+		}()
 	}
 
 	tmpl, err := template.New("licrep").Parse(licenseTemplate)
@@ -133,6 +143,7 @@ func GenerateEmbeddedLicenses(opts util.Options, pkgs []Package) (err error) {
 
 const (
 	licenseTemplate string = `// Generated with by {{.programName}} version {{.programVersion}}
+// https://github.com/kopoli/licrep
 // Called with: {{.programArgs}}
 
 package {{.package}}

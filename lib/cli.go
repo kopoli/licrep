@@ -7,6 +7,7 @@ import (
 	util "github.com/kopoli/go-util"
 )
 
+// Cli parses the command line interface
 func Cli(opts util.Options, argsin []string) error {
 	progName := opts.Get("program-name", "licrep")
 
@@ -23,6 +24,8 @@ func Cli(opts util.Options, argsin []string) error {
 	optShowSummary := app.BoolOpt("s show-summary", false, "Show a license summary (no generating).")
 	optShowLicenses := app.BoolOpt("L show-licenses", false, "Show the contents of all licenses (no generating).")
 
+	optShowLicrepLicenses := app.BoolOpt("licrep-licenses", false, "Show licenses of licrep.")
+
 	app.Version("v version", util.VersionString(opts))
 
 	app.Action = func() {
@@ -37,6 +40,9 @@ func Cli(opts util.Options, argsin []string) error {
 		}
 		if *optShowLicenses {
 			opts.Set("show-license", "full")
+		}
+		if *optShowLicrepLicenses {
+			opts.Set("show-self-licenses","t")
 		}
 	}
 

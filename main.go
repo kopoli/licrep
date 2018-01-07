@@ -1,5 +1,7 @@
 package main
 
+//go:generate licrep -o licenses.go -p main --prefix "Licrep"
+
 import (
 	"fmt"
 	"os"
@@ -34,6 +36,16 @@ func main() {
 	dir, err := filepath.Abs(opts.Get("directory", "."))
 	checkFault(err, "Given directory not valid")
 
+	// Show the licenses of this program
+	if opts.IsSet("show-self-licenses") {
+		licenses, err := LicrepGetLicenses()
+		checkFault(err, "Internal error: License decoding failed")
+		for i := range licenses {
+			fmt.Printf("* %s:\n\n%s\n\n", i, licenses[i].Text)
+		}
+		os.Exit(0)
+	}
+
 	pkg, err := licrep.GetPackages(".", dir)
 	checkFault(err, "Getting package licenses failed")
 
@@ -50,7 +62,7 @@ func main() {
 		}
 	} else {
 		err = licrep.GenerateEmbeddedLicenses(opts, pkg)
-		checkFault(err,"Generating embedded licenses failed")
+		checkFault(err, "Generating embedded licenses failed")
 	}
 
 	os.Exit(0)

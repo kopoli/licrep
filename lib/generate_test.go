@@ -29,8 +29,8 @@ func Test_chunker_Write(t *testing.T) {
 				lineLength: tt.lineLength,
 			}
 			got, err := w.Write([]byte(tt.input))
-			if (err != nil) != false {
-				t.Errorf("chunker.Write() error = %v, wantErr %v", err, false)
+			if err != nil {
+				t.Errorf("chunker.Write() error = %v", err)
 				return
 			}
 			if got != len(tt.output) || buf.String() != tt.output {
