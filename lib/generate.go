@@ -9,6 +9,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"strings"
 	"text/template"
 
 	util "github.com/kopoli/go-util"
@@ -87,6 +88,31 @@ func encodeData(input string) (out string, err error) {
 	out = data.String()
 	return
 
+}
+
+// FilterPackages filters out the ignored packages from the list
+func FilterPackages(opts util.Options, pkgs []Package) (ret []Package) {
+	// Prepare the list of ignored packages
+	ignorestr := opts.Get("ignore-packages", "")
+	var ignores []string
+	if ignorestr != "" {
+		ignores = strings.Split(ignorestr, " ")
+	}
+
+	// Check if the package has been ignored
+	var ignored bool
+	for i := range pkgs {
+		ignored = false
+		for j := range ignores {
+			if ignores[j] == pkgs[i].Name || ignores[j] == pkgs[i].ImportPath {
+				ignored = true
+			}
+		}
+		if !ignored {
+			ret = append(ret, pkgs[i])
+		}
+	}
+	return
 }
 
 // determinePackage determines the package that is written to the generated

@@ -56,6 +56,8 @@ func main() {
 	pkg, err := licrep.GetPackages(".", dir)
 	checkFault(err, "Getting package licenses failed")
 
+	pkg = licrep.FilterPackages(opts, pkg)
+
 	if opts.IsSet("show-license") {
 		show := opts.Get("show-license", "")
 		for i := range pkg {
