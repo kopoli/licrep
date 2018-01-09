@@ -144,7 +144,7 @@ func GenerateEmbeddedLicenses(opts util.Options, pkgs []Package) (err error) {
 		"%s": Data{
 			Name: "%s",
 			Data: `+"`\n%s`"+`,
-		},`, pkgs[i].Name, pkgs[i].License, str))
+		},`, pkgs[i].ImportPath, pkgs[i].License, str))
 	}
 
 	pkg, err := determinePackage(opts, pkgs)

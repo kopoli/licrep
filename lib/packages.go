@@ -20,6 +20,8 @@ const (
 // Package reprsents an imported package
 type Package struct {
 	Name          string
+	ImportPath    string
+	Dir           string
 	License       string
 	LicenseString string
 }
@@ -62,7 +64,9 @@ func GetPackages(pkgname string, dir string) (ret []Package, err error) {
 		}
 
 		p := Package{
-			Name: pkg.ImportPath,
+			Name:       pkg.Name,
+			ImportPath: pkg.ImportPath,
+			Dir:        pkg.Dir,
 		}
 
 		l, err := findLicense(pkg.Dir, pkg.SrcRoot)
