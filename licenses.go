@@ -1,6 +1,6 @@
 // Generated with by licrep version 0.1.0
 // https://github.com/kopoli/licrep
-// Called with: licrep -o licenses.go -p main --prefix Licrep
+// Called with: licrep -o licenses.go --prefix Licrep
 
 package main
 
@@ -21,28 +21,15 @@ type LicrepLicense struct {
 }
 
 func LicrepGetLicenses() (map[string]LicrepLicense, error) {
-	type Data struct {
+	type EncodedLicense struct {
 		Name string
-		Data string
+		Text string
 	}
-	data := map[string]Data{
+	data := map[string]EncodedLicense{
 
-		"github.com/davecgh/go-spew/spew": Data{
-			Name: "ISC",
-			Data: `
-H4sIAAAAAAAC/1SQz27bOBjE73yKQU67gNab5NBTUZSRPlkEaNIlqRg5KhYdE3BEQaId+O0LKk2bXvgH
-/GbmxxG2hAx7P8yesTKO1ym8HBP+2f+L+9u7+//ub+++oOouHmU8ncIw42vfXfz3vOxXQ/fqvzG29dNr
-mOcQB6SI8+wL7ON4LfAa+3C4FuiG/v84oQ9zmsLzOXmkY5gxx0N66yaPQ5zQDVc2nqcxzh5vIR0Rp2WP
-54SD9wgzjn7yz1e8TN2QfF9gnOIl9L5HOnYJ6ejRPceLZ/vf/xhiCnuf898Txz+kH0/j6LsJYUB3OmXs
-4OcVY64hWF27HTcEYbE1+lFUVOGGWwh7A64q5CHeukYbVMKWkouNBZcSO24MV06QZTvhGhhac1PBabhG
-2E/GqpRtJdR6UYnNVgqqPqmha7YhUzZcOf4gpHBPS3AtnCJrVxAKSoMeSTnYJpt8YnogSMEfJKHWhnH1
-BLulUnBZoBKGSldAqI+TNii1svSjJeUEl6j4hq8zgkGW/rqyXcOd1fRIBoZsK12mr43eQGqbgdFaKlBx
-x7N0a3QtnC2wa8g1ZDIxV4yXTmiVp0utnOGZQNFaijWpkrJQL9NOGyd0a/EuKMCNsDlRty6XoxfDUitF
-745L3bmD1i42WzK1Nhu+uNZ/179iPwMAAP//T6K2Jf4CAAA=`,
-		},
-		"github.com/jawher/mow.cli": Data{
+		"github.com/jawher/mow.cli": EncodedLicense{
 			Name: "MIT",
-			Data: `
+			Text: `
 H4sIAAAAAAAC/3xRvY7jNhjs+RSDre4AYvODVOm4Em0xkUiDos9xSUv0ioEsGiIVw28fUPbeYVNEjcDv
 Z+abGfz/ZwaHRhjUvnNTdIQU4Xqf/fuQ8KX7il9//uU3ij/sbXAzmrDEaAnZufniY/Rhgo8Y3OxOd7zP
 dkqupzjPziGc0Q12fncUKcBOd1zdHMOEcErWT356h0UXrncSzkiDj4jhnG52drBTDxtj6LxNrkcfuuXi
@@ -56,9 +43,121 @@ pGFvohbmSMlGGJkxN0qDYce0EcW+Zhq7vd6ploPJElJJITdayC1vuDSvEBJSgX/j0qCtWF1nKsL2plI6
 hsIobb6vHkTLKZgWbTZko1VDSbZTbfKIkHlP8gdKthqfElF6fe9b/h0QJWe1kNsWQn6K75WQfwMAAP//
 eVpV+1MEAAA=`,
 		},
-		"github.com/kopoli/go-util": Data{
+		"github.com/jawher/mow.cli/internal/container": EncodedLicense{
 			Name: "MIT",
-			Data: `
+			Text: `
+H4sIAAAAAAAC/3xRvY7jNhjs+RSDre4AYvODVOm4Em0xkUiDos9xSUv0ioEsGiIVw28fUPbeYVNEjcDv
+Z+abGfz/ZwaHRhjUvnNTdIQU4Xqf/fuQ8KX7il9//uU3ij/sbXAzmrDEaAnZufniY/Rhgo8Y3OxOd7zP
+dkqupzjPziGc0Q12fncUKcBOd1zdHMOEcErWT356h0UXrncSzkiDj4jhnG52drBTDxtj6LxNrkcfuuXi
+pmRT5jv70UV8SYPDS/vcePm6kvTOjsRPyL2PFm4+DWFJmF1Ms+8yBoWfunHp8w0f7dFf/JMhr6/6I0kB
+S3R0vZPiEnp/zn+3yroup9HHgaL3Gfq0JEcRc3E1kmYdP4UZ0Y0j6cLVu4hV64/r1pl8+jUbmp4WxVy5
+DeHyWYmP5LzMk4+DW3f6gBhWxr9dl3Ilj5/DOIZbltaFqfdZUfydkJyyPYV/3KrlEe8Uku8edq8BXH+k
++mzFwY4jTu5pmOvhJ5JLH3LmTB+TnZK3I65hXvn+K/OVEFNxtGpjDkxziBY7rb6Jkpd4YS1E+0JxEKZS
+e4MD05pJc4TagMkj/hSypOB/7TRvWyhNRLOrBS8phCzqfSnkFm97A6kMatEIw0sYhUz4hBK8zWAN10XF
+pGFvohbmSMlGGJkxN0qDYce0EcW+Zhq7vd6ploPJElJJITdayC1vuDSvEBJSgX/j0qCtWF1nKsL2plI6
+34dC7Y5abCuDStUl1y3eOGrB3mr+oJJHFDUTDUXJGrbl65YyFdckjz2uw6HiuZT5mAQrjFAyyyiUNJoV
+hsIobb6vHkTLKZgWbTZko1VDSbZTbfKIkHlP8gdKthqfElF6fe9b/h0QJWe1kNsWQn6K75WQfwMAAP//
+eVpV+1MEAAA=`,
+		},
+		"github.com/jawher/mow.cli/internal/flow": EncodedLicense{
+			Name: "MIT",
+			Text: `
+H4sIAAAAAAAC/3xRvY7jNhjs+RSDre4AYvODVOm4Em0xkUiDos9xSUv0ioEsGiIVw28fUPbeYVNEjcDv
+Z+abGfz/ZwaHRhjUvnNTdIQU4Xqf/fuQ8KX7il9//uU3ij/sbXAzmrDEaAnZufniY/Rhgo8Y3OxOd7zP
+dkqupzjPziGc0Q12fncUKcBOd1zdHMOEcErWT356h0UXrncSzkiDj4jhnG52drBTDxtj6LxNrkcfuuXi
+pmRT5jv70UV8SYPDS/vcePm6kvTOjsRPyL2PFm4+DWFJmF1Ms+8yBoWfunHp8w0f7dFf/JMhr6/6I0kB
+S3R0vZPiEnp/zn+3yroup9HHgaL3Gfq0JEcRc3E1kmYdP4UZ0Y0j6cLVu4hV64/r1pl8+jUbmp4WxVy5
+DeHyWYmP5LzMk4+DW3f6gBhWxr9dl3Ilj5/DOIZbltaFqfdZUfydkJyyPYV/3KrlEe8Uku8edq8BXH+k
++mzFwY4jTu5pmOvhJ5JLH3LmTB+TnZK3I65hXvn+K/OVEFNxtGpjDkxziBY7rb6Jkpd4YS1E+0JxEKZS
+e4MD05pJc4TagMkj/hSypOB/7TRvWyhNRLOrBS8phCzqfSnkFm97A6kMatEIw0sYhUz4hBK8zWAN10XF
+pGFvohbmSMlGGJkxN0qDYce0EcW+Zhq7vd6ploPJElJJITdayC1vuDSvEBJSgX/j0qCtWF1nKsL2plI6
+34dC7Y5abCuDStUl1y3eOGrB3mr+oJJHFDUTDUXJGrbl65YyFdckjz2uw6HiuZT5mAQrjFAyyyiUNJoV
+hsIobb6vHkTLKZgWbTZko1VDSbZTbfKIkHlP8gdKthqfElF6fe9b/h0QJWe1kNsWQn6K75WQfwMAAP//
+eVpV+1MEAAA=`,
+		},
+		"github.com/jawher/mow.cli/internal/fsm": EncodedLicense{
+			Name: "MIT",
+			Text: `
+H4sIAAAAAAAC/3xRvY7jNhjs+RSDre4AYvODVOm4Em0xkUiDos9xSUv0ioEsGiIVw28fUPbeYVNEjcDv
+Z+abGfz/ZwaHRhjUvnNTdIQU4Xqf/fuQ8KX7il9//uU3ij/sbXAzmrDEaAnZufniY/Rhgo8Y3OxOd7zP
+dkqupzjPziGc0Q12fncUKcBOd1zdHMOEcErWT356h0UXrncSzkiDj4jhnG52drBTDxtj6LxNrkcfuuXi
+pmRT5jv70UV8SYPDS/vcePm6kvTOjsRPyL2PFm4+DWFJmF1Ms+8yBoWfunHp8w0f7dFf/JMhr6/6I0kB
+S3R0vZPiEnp/zn+3yroup9HHgaL3Gfq0JEcRc3E1kmYdP4UZ0Y0j6cLVu4hV64/r1pl8+jUbmp4WxVy5
+DeHyWYmP5LzMk4+DW3f6gBhWxr9dl3Ilj5/DOIZbltaFqfdZUfydkJyyPYV/3KrlEe8Uku8edq8BXH+k
++mzFwY4jTu5pmOvhJ5JLH3LmTB+TnZK3I65hXvn+K/OVEFNxtGpjDkxziBY7rb6Jkpd4YS1E+0JxEKZS
+e4MD05pJc4TagMkj/hSypOB/7TRvWyhNRLOrBS8phCzqfSnkFm97A6kMatEIw0sYhUz4hBK8zWAN10XF
+pGFvohbmSMlGGJkxN0qDYce0EcW+Zhq7vd6ploPJElJJITdayC1vuDSvEBJSgX/j0qCtWF1nKsL2plI6
+34dC7Y5abCuDStUl1y3eOGrB3mr+oJJHFDUTDUXJGrbl65YyFdckjz2uw6HiuZT5mAQrjFAyyyiUNJoV
+hsIobb6vHkTLKZgWbTZko1VDSbZTbfKIkHlP8gdKthqfElF6fe9b/h0QJWe1kNsWQn6K75WQfwMAAP//
+eVpV+1MEAAA=`,
+		},
+		"github.com/jawher/mow.cli/internal/lexer": EncodedLicense{
+			Name: "MIT",
+			Text: `
+H4sIAAAAAAAC/3xRvY7jNhjs+RSDre4AYvODVOm4Em0xkUiDos9xSUv0ioEsGiIVw28fUPbeYVNEjcDv
+Z+abGfz/ZwaHRhjUvnNTdIQU4Xqf/fuQ8KX7il9//uU3ij/sbXAzmrDEaAnZufniY/Rhgo8Y3OxOd7zP
+dkqupzjPziGc0Q12fncUKcBOd1zdHMOEcErWT356h0UXrncSzkiDj4jhnG52drBTDxtj6LxNrkcfuuXi
+pmRT5jv70UV8SYPDS/vcePm6kvTOjsRPyL2PFm4+DWFJmF1Ms+8yBoWfunHp8w0f7dFf/JMhr6/6I0kB
+S3R0vZPiEnp/zn+3yroup9HHgaL3Gfq0JEcRc3E1kmYdP4UZ0Y0j6cLVu4hV64/r1pl8+jUbmp4WxVy5
+DeHyWYmP5LzMk4+DW3f6gBhWxr9dl3Ilj5/DOIZbltaFqfdZUfydkJyyPYV/3KrlEe8Uku8edq8BXH+k
++mzFwY4jTu5pmOvhJ5JLH3LmTB+TnZK3I65hXvn+K/OVEFNxtGpjDkxziBY7rb6Jkpd4YS1E+0JxEKZS
+e4MD05pJc4TagMkj/hSypOB/7TRvWyhNRLOrBS8phCzqfSnkFm97A6kMatEIw0sYhUz4hBK8zWAN10XF
+pGFvohbmSMlGGJkxN0qDYce0EcW+Zhq7vd6ploPJElJJITdayC1vuDSvEBJSgX/j0qCtWF1nKsL2plI6
+34dC7Y5abCuDStUl1y3eOGrB3mr+oJJHFDUTDUXJGrbl65YyFdckjz2uw6HiuZT5mAQrjFAyyyiUNJoV
+hsIobb6vHkTLKZgWbTZko1VDSbZTbfKIkHlP8gdKthqfElF6fe9b/h0QJWe1kNsWQn6K75WQfwMAAP//
+eVpV+1MEAAA=`,
+		},
+		"github.com/jawher/mow.cli/internal/matcher": EncodedLicense{
+			Name: "MIT",
+			Text: `
+H4sIAAAAAAAC/3xRvY7jNhjs+RSDre4AYvODVOm4Em0xkUiDos9xSUv0ioEsGiIVw28fUPbeYVNEjcDv
+Z+abGfz/ZwaHRhjUvnNTdIQU4Xqf/fuQ8KX7il9//uU3ij/sbXAzmrDEaAnZufniY/Rhgo8Y3OxOd7zP
+dkqupzjPziGc0Q12fncUKcBOd1zdHMOEcErWT356h0UXrncSzkiDj4jhnG52drBTDxtj6LxNrkcfuuXi
+pmRT5jv70UV8SYPDS/vcePm6kvTOjsRPyL2PFm4+DWFJmF1Ms+8yBoWfunHp8w0f7dFf/JMhr6/6I0kB
+S3R0vZPiEnp/zn+3yroup9HHgaL3Gfq0JEcRc3E1kmYdP4UZ0Y0j6cLVu4hV64/r1pl8+jUbmp4WxVy5
+DeHyWYmP5LzMk4+DW3f6gBhWxr9dl3Ilj5/DOIZbltaFqfdZUfydkJyyPYV/3KrlEe8Uku8edq8BXH+k
++mzFwY4jTu5pmOvhJ5JLH3LmTB+TnZK3I65hXvn+K/OVEFNxtGpjDkxziBY7rb6Jkpd4YS1E+0JxEKZS
+e4MD05pJc4TagMkj/hSypOB/7TRvWyhNRLOrBS8phCzqfSnkFm97A6kMatEIw0sYhUz4hBK8zWAN10XF
+pGFvohbmSMlGGJkxN0qDYce0EcW+Zhq7vd6ploPJElJJITdayC1vuDSvEBJSgX/j0qCtWF1nKsL2plI6
+34dC7Y5abCuDStUl1y3eOGrB3mr+oJJHFDUTDUXJGrbl65YyFdckjz2uw6HiuZT5mAQrjFAyyyiUNJoV
+hsIobb6vHkTLKZgWbTZko1VDSbZTbfKIkHlP8gdKthqfElF6fe9b/h0QJWe1kNsWQn6K75WQfwMAAP//
+eVpV+1MEAAA=`,
+		},
+		"github.com/jawher/mow.cli/internal/parser": EncodedLicense{
+			Name: "MIT",
+			Text: `
+H4sIAAAAAAAC/3xRvY7jNhjs+RSDre4AYvODVOm4Em0xkUiDos9xSUv0ioEsGiIVw28fUPbeYVNEjcDv
+Z+abGfz/ZwaHRhjUvnNTdIQU4Xqf/fuQ8KX7il9//uU3ij/sbXAzmrDEaAnZufniY/Rhgo8Y3OxOd7zP
+dkqupzjPziGc0Q12fncUKcBOd1zdHMOEcErWT356h0UXrncSzkiDj4jhnG52drBTDxtj6LxNrkcfuuXi
+pmRT5jv70UV8SYPDS/vcePm6kvTOjsRPyL2PFm4+DWFJmF1Ms+8yBoWfunHp8w0f7dFf/JMhr6/6I0kB
+S3R0vZPiEnp/zn+3yroup9HHgaL3Gfq0JEcRc3E1kmYdP4UZ0Y0j6cLVu4hV64/r1pl8+jUbmp4WxVy5
+DeHyWYmP5LzMk4+DW3f6gBhWxr9dl3Ilj5/DOIZbltaFqfdZUfydkJyyPYV/3KrlEe8Uku8edq8BXH+k
++mzFwY4jTu5pmOvhJ5JLH3LmTB+TnZK3I65hXvn+K/OVEFNxtGpjDkxziBY7rb6Jkpd4YS1E+0JxEKZS
+e4MD05pJc4TagMkj/hSypOB/7TRvWyhNRLOrBS8phCzqfSnkFm97A6kMatEIw0sYhUz4hBK8zWAN10XF
+pGFvohbmSMlGGJkxN0qDYce0EcW+Zhq7vd6ploPJElJJITdayC1vuDSvEBJSgX/j0qCtWF1nKsL2plI6
+34dC7Y5abCuDStUl1y3eOGrB3mr+oJJHFDUTDUXJGrbl65YyFdckjz2uw6HiuZT5mAQrjFAyyyiUNJoV
+hsIobb6vHkTLKZgWbTZko1VDSbZTbfKIkHlP8gdKthqfElF6fe9b/h0QJWe1kNsWQn6K75WQfwMAAP//
+eVpV+1MEAAA=`,
+		},
+		"github.com/jawher/mow.cli/internal/values": EncodedLicense{
+			Name: "MIT",
+			Text: `
+H4sIAAAAAAAC/3xRvY7jNhjs+RSDre4AYvODVOm4Em0xkUiDos9xSUv0ioEsGiIVw28fUPbeYVNEjcDv
+Z+abGfz/ZwaHRhjUvnNTdIQU4Xqf/fuQ8KX7il9//uU3ij/sbXAzmrDEaAnZufniY/Rhgo8Y3OxOd7zP
+dkqupzjPziGc0Q12fncUKcBOd1zdHMOEcErWT356h0UXrncSzkiDj4jhnG52drBTDxtj6LxNrkcfuuXi
+pmRT5jv70UV8SYPDS/vcePm6kvTOjsRPyL2PFm4+DWFJmF1Ms+8yBoWfunHp8w0f7dFf/JMhr6/6I0kB
+S3R0vZPiEnp/zn+3yroup9HHgaL3Gfq0JEcRc3E1kmYdP4UZ0Y0j6cLVu4hV64/r1pl8+jUbmp4WxVy5
+DeHyWYmP5LzMk4+DW3f6gBhWxr9dl3Ilj5/DOIZbltaFqfdZUfydkJyyPYV/3KrlEe8Uku8edq8BXH+k
++mzFwY4jTu5pmOvhJ5JLH3LmTB+TnZK3I65hXvn+K/OVEFNxtGpjDkxziBY7rb6Jkpd4YS1E+0JxEKZS
+e4MD05pJc4TagMkj/hSypOB/7TRvWyhNRLOrBS8phCzqfSnkFm97A6kMatEIw0sYhUz4hBK8zWAN10XF
+pGFvohbmSMlGGJkxN0qDYce0EcW+Zhq7vd6ploPJElJJITdayC1vuDSvEBJSgX/j0qCtWF1nKsL2plI6
+34dC7Y5abCuDStUl1y3eOGrB3mr+oJJHFDUTDUXJGrbl65YyFdckjz2uw6HiuZT5mAQrjFAyyyiUNJoV
+hsIobb6vHkTLKZgWbTZko1VDSbZTbfKIkHlP8gdKthqfElF6fe9b/h0QJWe1kNsWQn6K75WQfwMAAP//
+eVpV+1MEAAA=`,
+		},
+		"github.com/kopoli/go-util": EncodedLicense{
+			Name: "MIT",
+			Text: `
 H4sIAAAAAAAC/1xRzW7jNhC+8yk+5JQAQvpz6KE3xqItIhJpUPS6PtISHbGVRUOkG+Tti5Gd3WZPgjjz
 /Y4dPBppUYfOT8njsZH2ibFVvHzM4W3IeOye8Puvv/2BVzeOHq9u+sfNnrGtn88hpRAnhITBz/74gbfZ
 Tdn3BU6z94gndIOb33yBHOGmD1z8nOKEeMwuTGF6g0MXLx8snpCHkJDiKb+72cNNPVxKsQsu+x597K5n
@@ -72,9 +171,9 @@ YaW3ByM3lUWl61KYFi8CteQvtbhJqQNWNZdNgZI3fCMWlLaVMIzWbu6wrwQ9kR5X4CsrtaIYK62s4Stb
 wGpjv0P3shUFuJEtFbI2uikY1anXtCIV4ZS4sVDV+HIRbZb/XSu+E6IUvJZq0xKYIn4uP/8XAAD//6vn
 VXQ3BAAA`,
 		},
-		"github.com/kopoli/licrep": Data{
+		"github.com/kopoli/licrep/lib": EncodedLicense{
 			Name: "MIT",
-			Data: `
+			Text: `
 H4sIAAAAAAAC/1xRzW6rOBTeI/EOn7pqJdT52Yw0Ozc4wSrYkXFuJksHnOIZgiPsTNW3Hx2S3ju9K4TP
 +X6PGRwaYVD7zk3R4bER5inP8mwVLh+zfxsSHrsn/P7rb3/g1Y6jw6ud/rGzo52tm88+Rh8m+IjBze74
 gbfZTsn1BU6zcwgndIOd31yBFGCnD1zcHMOEcEzWT356g0UXLh95Fk5Ig4+I4ZTe7exgpx42xtB5m1yP
@@ -88,25 +187,9 @@ sbomrTxjO1MpTRaxUtuDFpvKoFJ1yXWLF45asJea37TkAauaiaZAyRq24QtKmYrrPKO9m0HsK05vpMgk
 2MoIJSnJSkmj2coUMEqb79i9aHkBpkVLnay1aoo8o07VmnaEJKDkNxrqG1/OovTyv2v5d0aUnNVCbloC
 Lyk/t5/z7L8AAAD//1HmlTNNBAAA`,
 		},
-		"github.com/kopoli/licrep/lib": Data{
-			Name: "MIT",
-			Data: `
-H4sIAAAAAAAC/1xRzW6rOBTeI/EOn7pqJdT52Yw0Ozc4wSrYkXFuJksHnOIZgiPsTNW3Hx2S3ju9K4TP
-+X6PGRwaYVD7zk3R4bER5inP8mwVLh+zfxsSHrsn/P7rb3/g1Y6jw6ud/rGzo52tm88+Rh8m+IjBze74
-gbfZTsn1BU6zcwgndIOd31yBFGCnD1zcHMOEcEzWT356g0UXLh95Fk5Ig4+I4ZTe7exgpx42xtB5m1yP
-PnTXs5uSTSR48qOLeEyDw0N7Rzw8LSq9s2Oe+Qk0/Jzh3achXBNmF9PsOyIp4KduvPbk4nM8+rO/SxB8
-qSDmWQq4RlcsVgucQ+9P9HVLssv1OPo4FOg9cR+vyRWI9LiUWlCSX8KM6MYxz7pw8S5iifvD37JE7i9U
-arrXFOnlfQjnr1l8zLPTdZ58HNwC6gNiWDT/dl2iF9o/hXEM75SuC1PvKVT8kw5HV7fH8K9b8tzOPIXk
-u1vpyxkuP457H8XBjiOO7t6a6+En2P9HmslBTHZK3o64hHmR/Dnq82Kh4mjV2uyZ5hAttlp9EyUv8cBa
-iPahwF6YSu0M9kxrJs0Bag0mD3gVsizA/9pq3rZQOs9Es60FLwsIuap3pZAbvOwMpDKoRSMML2EUSPHO
-JXhLbA3Xq4pJw15ELcyhyLO1MJJY10qDYcu0EatdzTS2O71VLQeTJaSSQq61kBvecGmeISSkAv/GpUFb
-sbomrTxjO1MpTRaxUtuDFpvKoFJ1yXWLF45asJea37TkAauaiaZAyRq24QtKmYrrPKO9m0HsK05vpMgk
-2MoIJSnJSkmj2coUMEqb79i9aHkBpkVLnay1aoo8o07VmnaEJKDkNxrqG1/OovTyv2v5d0aUnNVCbloC
-Lyk/t5/z7L8AAAD//1HmlTNNBAAA`,
-		},
-		"github.com/pkg/errors": Data{
+		"github.com/pkg/errors": EncodedLicense{
 			Name: "FreeBSD",
-			Data: `
+			Text: `
 H4sIAAAAAAAC/5SSQY/bNhOG7/wVL3LKfhD8tQV6aYqitDS2BpBJlaTW8VFrcWMCtrSQ6A323xdkdhGn
 DVr05LHEmXnehyqnp5c5fDpFvD/e4acffvy5QNU/e5QnP/oX/Dr0z/73Y/6zGn38TcjzGbljwewXPz/7
 YSWE8UNY4hwerjFMI/pxwHXxCCOW6ToffX7yEMZ+fsHjNF+WAp9DPGGa8+90jeIyDeExHPs0oEA/ezz5
@@ -121,9 +204,9 @@ x1rdodZ7uicjStlZqrJdrXJUV5M2hzQ0OcjyC+xrcjWZJDSbkkmBdYZLd3NMaAOnjbvJCEXbhrekSko0
 Ok3Zs6U7SMM2HeAva/fyAN3lyOmOOksilzdfbJFvEryBrO45Yb8ebrW1/PqdZGVljS+6V+LPAAAA//+5
 j2aZIAUAAA==`,
 		},
-		"github.com/ryanuber/go-license": Data{
+		"github.com/ryanuber/go-license": EncodedLicense{
 			Name: "MIT",
-			Data: `
+			Text: `
 H4sIAAAAAAAC/1xRzW7jNhC+8yk+5JQAQvqDnnpjLNoiKpEGRa/royzREQuZNES6gd++GNnZbfYkiDPf
 79jRoZEWte9dSA7PjbQvjK3i5Tb79zHjuX/B77/+9gfMrQvYHd3M2NbNZ5+SjwE+YXSzO97wPnchu6HA
 aXYO8YR+7OZ3VyBHdOGGi5tTDIjH3Pngwzs69PFyY/GEPPqEFE/5o5sdujCgSyn2vstuwBD769mF3GXS
@@ -164,7 +247,7 @@ BAAA`,
 	ret := make(map[string]LicrepLicense)
 
 	for k := range data {
-		text, err := decode(data[k].Data)
+		text, err := decode(data[k].Text)
 		if err != nil {
 			return nil, err
 		}

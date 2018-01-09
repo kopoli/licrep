@@ -1,6 +1,6 @@
 package main
 
-//go:generate licrep -o licenses.go -p main --prefix "Licrep"
+//go:generate licrep -o licenses.go --prefix "Licrep"
 
 import (
 	"fmt"
