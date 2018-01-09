@@ -167,9 +167,9 @@ func GenerateEmbeddedLicenses(opts util.Options, pkgs []Package) (err error) {
 			}
 		}
 		licenseData.WriteString(fmt.Sprintf(`
-		"%s": Data{
+		"%s": EncodedLicense{
 			Name: "%s",
-			Data: `+"`\n%s`"+`,
+			Text: `+"`\n%s`"+`,
 		},`, pkgs[i].ImportPath, pkgs[i].License, str))
 	}
 
@@ -235,11 +235,11 @@ type {{.prefix}}License struct {
 }
 
 func {{.prefix}}GetLicenses() (map[string]{{.prefix}}License, error) {
-	type Data struct {
+	type EncodedLicense struct {
 		Name string
-		Data string
+		Text string
 	}
-	data := map[string]Data{
+	data := map[string]EncodedLicense{
 {{.data}}
 	}
 
@@ -268,7 +268,7 @@ func {{.prefix}}GetLicenses() (map[string]{{.prefix}}License, error) {
 	ret := make(map[string]{{.prefix}}License)
 
 	for k := range data {
-		text, err := decode(data[k].Data)
+		text, err := decode(data[k].Text)
 		if err != nil {
 			return nil, err
 		}
