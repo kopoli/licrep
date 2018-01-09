@@ -2,12 +2,10 @@ package licrep
 
 import (
 	"errors"
-	"fmt"
 	"go/build"
 	"path/filepath"
 	"sort"
 
-	"github.com/davecgh/go-spew/spew"
 	"github.com/ryanuber/go-license"
 )
 
@@ -56,8 +54,6 @@ func GetPackages(pkgname string, dir string) (ret []Package, err error) {
 			return
 		}
 
-		fmt.Println(spew.Sdump(pkg))
-
 		_, ok := imports[pkg.ImportPath]
 		if ok {
 			return
@@ -92,7 +88,6 @@ func GetPackages(pkgname string, dir string) (ret []Package, err error) {
 		names = append(names, i)
 	}
 	sort.Strings(names)
-	fmt.Println("NIMET ON", names)
 
 	ret = make([]Package, len(imports))
 	j := 0
@@ -101,7 +96,5 @@ func GetPackages(pkgname string, dir string) (ret []Package, err error) {
 		j++
 	}
 
-	// fmt.Println(spew.Sdump(imports))
-	// fmt.Println(spew.Sdump(ret))
 	return
 }
