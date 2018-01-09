@@ -63,9 +63,9 @@ func main() {
 		for i := range pkg {
 			switch show {
 			case "summary":
-				fmt.Println(pkg[i].Name, "  ", pkg[i].License)
+				fmt.Println(pkg[i].ImportPath, "  ", pkg[i].License)
 			case "full":
-				fmt.Println("* ", pkg[i].Name, "  ", pkg[i].License,
+				fmt.Println("* ", pkg[i].ImportPath, "  ", pkg[i].License,
 					"\n", pkg[i].LicenseString, "\n")
 			}
 		}
