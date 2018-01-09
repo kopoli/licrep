@@ -1,4 +1,4 @@
-// Generated with by licrep version 0.1.0
+// Generated with by licrep version 0.2.0
 // https://github.com/kopoli/licrep
 // Called with: licrep -o licenses.go --prefix Licrep
 

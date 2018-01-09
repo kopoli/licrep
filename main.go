@@ -14,7 +14,8 @@ import (
 )
 
 var (
-	Version = "0.1.0"
+	// Version represents the program version
+	Version = "0.2.0"
 )
 
 func checkFault(err error, arg ...interface{}) {
@@ -39,7 +40,8 @@ func main() {
 
 	// Show the licenses of this program
 	if opts.IsSet("show-self-licenses") {
-		licenses, err := LicrepGetLicenses()
+		var licenses map[string]LicrepLicense
+		licenses, err = LicrepGetLicenses()
 		checkFault(err, "Internal error: License decoding failed")
 
 		var names []string
@@ -65,8 +67,8 @@ func main() {
 			case "summary":
 				fmt.Println(pkg[i].ImportPath, "  ", pkg[i].License)
 			case "full":
-				fmt.Println("* ", pkg[i].ImportPath, "  ", pkg[i].License,
-					"\n", pkg[i].LicenseString, "\n")
+				fmt.Printf("* %s  %s\n%s\n", pkg[i].ImportPath,
+					pkg[i].License, pkg[i].LicenseString)
 			}
 		}
 	} else {
