@@ -42,7 +42,7 @@ func Cli(opts util.Options, argsin []string) error {
 			opts.Set("show-license", "full")
 		}
 		if *optShowLicrepLicenses {
-			opts.Set("show-self-licenses","t")
+			opts.Set("show-self-licenses", "t")
 		}
 	}
 
