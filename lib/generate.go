@@ -226,6 +226,7 @@ import (
 	"strings"
 )
 
+// {{.prefix}}License is a representation of an embedded license.
 type {{.prefix}}License struct {
 	// Name of the license
 	Name string
@@ -234,6 +235,8 @@ type {{.prefix}}License struct {
 	Text string
 }
 
+// {{.prefix}}GetLicenses gets a map of {{.prefix}}Licenses where the keys are
+// the package names.
 func {{.prefix}}GetLicenses() (map[string]{{.prefix}}License, error) {
 	type EncodedLicense struct {
 		Name string

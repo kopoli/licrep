@@ -12,6 +12,7 @@ import (
 	"strings"
 )
 
+// LicrepLicense is a representation of an embedded license.
 type LicrepLicense struct {
 	// Name of the license
 	Name string
@@ -20,6 +21,8 @@ type LicrepLicense struct {
 	Text string
 }
 
+// LicrepGetLicenses gets a map of LicrepLicenses where the keys are
+// the package names.
 func LicrepGetLicenses() (map[string]LicrepLicense, error) {
 	type EncodedLicense struct {
 		Name string
