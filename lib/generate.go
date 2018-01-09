@@ -5,8 +5,10 @@ import (
 	"compress/gzip"
 	"encoding/base64"
 	"fmt"
+	"go/build"
 	"io"
 	"os"
+	"path/filepath"
 	"text/template"
 
 	util "github.com/kopoli/go-util"
@@ -87,6 +89,43 @@ func encodeData(input string) (out string, err error) {
 
 }
 
+// determinePackage determines the package that is written to the generated
+// file
+func determinePackage(opts util.Options, pkgs []Package) (string, error) {
+	pkg := opts.Get("package", "")
+
+	// Return the package given explicitly in the command line
+	if pkg != "" {
+		return pkg, nil
+	}
+
+	outfile := opts.Get("output", "")
+
+	var dir string
+	var err error
+	if outfile == "" {
+		// If outfile is stdout, return the package in the current working
+		// directory
+		dir, err = os.Getwd()
+		if err != nil {
+			return "", err
+		}
+	} else {
+		// If outfile is a filename, get the package of that directory.
+		dir, err = filepath.Abs(outfile)
+		if err != nil {
+			return "", err
+		}
+		dir = filepath.Dir(dir)
+	}
+
+	p, err := build.Import(".", dir, 0)
+	if err != nil {
+		return "", err
+	}
+	return p.Name, nil
+}
+
 // GenerateEmbeddedLicenses creates a compressed license representation to a
 // file or os.Stdout of the given Packages. The representation is go so it can
 // be built as part of a program.
@@ -108,12 +147,17 @@ func GenerateEmbeddedLicenses(opts util.Options, pkgs []Package) (err error) {
 		},`, pkgs[i].Name, pkgs[i].License, str))
 	}
 
+	pkg, err := determinePackage(opts, pkgs)
+	if err != nil {
+		return
+	}
+
 	argmap := map[string]string{
 		"programName":    opts.Get("program-name", ""),
 		"programVersion": opts.Get("program-version", ""),
 		"programArgs":    opts.Get("program-args", ""),
 		"prefix":         opts.Get("prefix", ""),
-		"package":        opts.Get("package", ""),
+		"package":        pkg,
 		"data":           licenseData.String(),
 	}
 
