@@ -15,7 +15,7 @@ import (
 
 var (
 	// Version represents the program version
-	Version = "0.2.0"
+	Version = "0.2.1"
 )
 
 func checkFault(err error, arg ...interface{}) {
