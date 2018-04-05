@@ -19,7 +19,7 @@ func Cli(opts util.Options, argsin []string) error {
 	optOutput := app.StringOpt("o out", "", "The generated licenses file. Stdout if empty.")
 	optPackage := app.StringOpt("p package", "", "The package to set for the generated file. Autodetected.")
 	optPrefix := app.StringOpt("prefix", "", "Prefix given to the functions in the generated file.")
-	optIgnore := app.StringsOpt("i ignore", []string{"main"}, "Ignore given package names from the list.")
+	optIgnore := app.StringsOpt("i ignore", []string{"main"}, "Ignore packages that match given regexps from the list.")
 
 	optShowSummary := app.BoolOpt("s show-summary", false, "Show a license summary (no generating).")
 	optShowLicenses := app.BoolOpt("L show-licenses", false, "Show the contents of all licenses (no generating).")

@@ -9,6 +9,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 	"text/template"
 
@@ -104,7 +105,11 @@ func FilterPackages(opts util.Options, pkgs []Package) (ret []Package) {
 	for i := range pkgs {
 		ignored = false
 		for j := range ignores {
-			if ignores[j] == pkgs[i].Name || ignores[j] == pkgs[i].ImportPath {
+			re, err := regexp.Compile(ignores[j])
+			if err != nil {
+				continue
+			}
+			if re.MatchString(pkgs[i].Name) || re.MatchString(pkgs[i].ImportPath) {
 				ignored = true
 			}
 		}
