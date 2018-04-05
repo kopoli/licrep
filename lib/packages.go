@@ -26,6 +26,7 @@ type Package struct {
 
 func findLicense(dir, root string) (ret *license.License, err error) {
 	d, _ := filepath.Split(dir)
+	d = filepath.Clean(d)
 	if d == "" || d == root {
 		return nil, errors.New("No license found in parent directories")
 	}
