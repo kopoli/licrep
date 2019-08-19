@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"sort"
 	"strings"
+	"text/tabwriter"
 
 	util "github.com/kopoli/go-util"
 	licrep "github.com/kopoli/licrep/lib"
@@ -62,15 +63,17 @@ func main() {
 
 	if opts.IsSet("show-license") {
 		show := opts.Get("show-license", "")
+		wr := tabwriter.NewWriter(os.Stdout, 0, 4, 2, ' ', 0)
 		for i := range pkg {
 			switch show {
 			case "summary":
-				fmt.Println(pkg[i].ImportPath, "  ", pkg[i].License)
+				fmt.Fprintf(wr, "%s\t%s\n", pkg[i].ImportPath, pkg[i].License)
 			case "full":
 				fmt.Printf("* %s  %s\n%s\n", pkg[i].ImportPath,
 					pkg[i].License, pkg[i].LicenseString)
 			}
 		}
+		_ = wr.Flush()
 	} else {
 		err = licrep.GenerateEmbeddedLicenses(opts, pkg)
 		checkFault(err, "Generating embedded licenses failed")
