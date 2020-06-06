@@ -10,40 +10,47 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	util "github.com/kopoli/go-util"
+	"github.com/kopoli/appkit"
 	licrep "github.com/kopoli/licrep/lib"
 )
 
 var (
-	// Version represents the program version
-	Version = "0.2.1"
+	version     = "Undefined"
+	timestamp   = "Undefined"
+	buildGOOS   = "Undefined"
+	buildGOARCH = "Undefined"
+	progVersion = "" + version
 )
 
-func checkFault(err error, arg ...interface{}) {
+func fault(err error, message string, arg ...string) {
 	if err != nil {
-		util.E.Print(err, arg...)
+		_, _ = fmt.Fprintf(os.Stderr, "Error: %s%s: %s\n",
+			message, strings.Join(arg, " "), err)
 		os.Exit(1)
 	}
 }
 
 func main() {
-	opts := util.NewOptions()
+	opts := appkit.NewOptions()
 
-	opts.Set("program-name", "licrep")
-	opts.Set("program-version", Version)
+	opts.Set("program-name", os.Args[0])
 	opts.Set("program-args", strings.Join(os.Args, " "))
+	opts.Set("program-version", progVersion)
+	opts.Set("program-timestamp", timestamp)
+	opts.Set("program-buildgoos", buildGOOS)
+	opts.Set("program-buildgoarch", buildGOARCH)
 
 	err := licrep.Cli(opts, os.Args)
-	checkFault(err, "command line parsing failed")
+	fault(err, "command line parsing failed")
 
 	dir, err := filepath.Abs(opts.Get("directory", "."))
-	checkFault(err, "Given directory not valid")
+	fault(err, "Given directory not valid")
 
 	// Show the licenses of this program
 	if opts.IsSet("show-self-licenses") {
 		var licenses map[string]LicrepLicense
 		licenses, err = LicrepGetLicenses()
-		checkFault(err, "Internal error: License decoding failed")
+		fault(err, "Internal error: License decoding failed")
 
 		var names []string
 		for i := range licenses {
@@ -57,7 +64,7 @@ func main() {
 	}
 
 	pkg, err := licrep.GetPackages(".", dir)
-	checkFault(err, "Getting package licenses failed")
+	fault(err, "Getting package licenses failed")
 
 	pkg = licrep.FilterPackages(opts, pkg)
 
@@ -76,7 +83,7 @@ func main() {
 		_ = wr.Flush()
 	} else {
 		err = licrep.GenerateEmbeddedLicenses(opts, pkg)
-		checkFault(err, "Generating embedded licenses failed")
+		fault(err, "Generating embedded licenses failed")
 	}
 
 	os.Exit(0)

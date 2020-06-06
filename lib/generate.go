@@ -13,7 +13,7 @@ import (
 	"strings"
 	"text/template"
 
-	util "github.com/kopoli/go-util"
+	"github.com/kopoli/appkit"
 )
 
 // chunker is a writer which writes given data to output and emits a newline
@@ -92,7 +92,7 @@ func encodeData(input string) (out string, err error) {
 }
 
 // FilterPackages filters out the ignored packages from the list
-func FilterPackages(opts util.Options, pkgs []Package) (ret []Package) {
+func FilterPackages(opts appkit.Options, pkgs []Package) (ret []Package) {
 	// Prepare the list of ignored packages
 	ignorestr := opts.Get("ignore-packages", "")
 	var ignores []string
@@ -122,7 +122,7 @@ func FilterPackages(opts util.Options, pkgs []Package) (ret []Package) {
 
 // determinePackage determines the package that is written to the generated
 // file
-func determinePackage(opts util.Options, pkgs []Package) (string, error) {
+func determinePackage(opts appkit.Options, pkgs []Package) (string, error) {
 	pkg := opts.Get("package", "")
 
 	// Return the package given explicitly in the command line
@@ -160,7 +160,7 @@ func determinePackage(opts util.Options, pkgs []Package) (string, error) {
 // GenerateEmbeddedLicenses creates a compressed license representation to a
 // file or os.Stdout of the given Packages. The representation is go so it can
 // be built as part of a program.
-func GenerateEmbeddedLicenses(opts util.Options, pkgs []Package) (err error) {
+func GenerateEmbeddedLicenses(opts appkit.Options, pkgs []Package) (err error) {
 	licenseData := &bytes.Buffer{}
 	var str string
 	for i := range pkgs {

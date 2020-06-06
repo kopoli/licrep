@@ -3,12 +3,12 @@ package licrep
 import (
 	"strings"
 
+	"github.com/kopoli/appkit"
 	cli "github.com/jawher/mow.cli"
-	util "github.com/kopoli/go-util"
 )
 
 // Cli parses the command line interface
-func Cli(opts util.Options, argsin []string) error {
+func Cli(opts appkit.Options, argsin []string) error {
 	progName := opts.Get("program-name", "licrep")
 
 	app := cli.App(progName, "Generate an embedded license report to your program.")
@@ -26,7 +26,7 @@ func Cli(opts util.Options, argsin []string) error {
 
 	optShowLicrepLicenses := app.BoolOpt("licrep-licenses", false, "Show licenses of licrep.")
 
-	app.Version("v version", util.VersionString(opts))
+	app.Version("v version", appkit.VersionString(opts))
 
 	app.Action = func() {
 		opts.Set("directory", *optDir)
