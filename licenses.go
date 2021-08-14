@@ -1,4 +1,4 @@
-// Generated with by licrep version 0.2.1
+// Generated with by licrep version v0.3.1
 // https://github.com/kopoli/licrep
 // Called with: licrep -o licenses.go --prefix Licrep
 
@@ -25,14 +25,15 @@ type LicrepLicense struct {
 // the package names.
 func LicrepGetLicenses() (map[string]LicrepLicense, error) {
 	type EncodedLicense struct {
-		Name string
-		Text string
+		Name   string
+		Text   string
+                length int64
 	}
 	data := map[string]EncodedLicense{
 
 		"github.com/jawher/mow.cli": EncodedLicense{
-			Name: "MIT",
-			Text: `
+			Name:   "MIT",
+			Text:   `
 H4sIAAAAAAAC/3xRvY7jNhjs+RSDre4AYvODVOm4Em0xkUiDos9xSUv0ioEsGiIVw28fUPbeYVNEjcDv
 Z+abGfz/ZwaHRhjUvnNTdIQU4Xqf/fuQ8KX7il9//uU3ij/sbXAzmrDEaAnZufniY/Rhgo8Y3OxOd7zP
 dkqupzjPziGc0Q12fncUKcBOd1zdHMOEcErWT356h0UXrncSzkiDj4jhnG52drBTDxtj6LxNrkcfuuXi
@@ -45,10 +46,11 @@ pGFvohbmSMlGGJkxN0qDYce0EcW+Zhq7vd6ploPJElJJITdayC1vuDSvEBJSgX/j0qCtWF1nKsL2plI6
 34dC7Y5abCuDStUl1y3eOGrB3mr+oJJHFDUTDUXJGrbl65YyFdckjz2uw6HiuZT5mAQrjFAyyyiUNJoV
 hsIobb6vHkTLKZgWbTZko1VDSbZTbfKIkHlP8gdKthqfElF6fe9b/h0QJWe1kNsWQn6K75WQfwMAAP//
 eVpV+1MEAAA=`,
+			length: 1107,
 		},
 		"github.com/jawher/mow.cli/internal/container": EncodedLicense{
-			Name: "MIT",
-			Text: `
+			Name:   "MIT",
+			Text:   `
 H4sIAAAAAAAC/3xRvY7jNhjs+RSDre4AYvODVOm4Em0xkUiDos9xSUv0ioEsGiIVw28fUPbeYVNEjcDv
 Z+abGfz/ZwaHRhjUvnNTdIQU4Xqf/fuQ8KX7il9//uU3ij/sbXAzmrDEaAnZufniY/Rhgo8Y3OxOd7zP
 dkqupzjPziGc0Q12fncUKcBOd1zdHMOEcErWT356h0UXrncSzkiDj4jhnG52drBTDxtj6LxNrkcfuuXi
@@ -61,10 +63,11 @@ pGFvohbmSMlGGJkxN0qDYce0EcW+Zhq7vd6ploPJElJJITdayC1vuDSvEBJSgX/j0qCtWF1nKsL2plI6
 34dC7Y5abCuDStUl1y3eOGrB3mr+oJJHFDUTDUXJGrbl65YyFdckjz2uw6HiuZT5mAQrjFAyyyiUNJoV
 hsIobb6vHkTLKZgWbTZko1VDSbZTbfKIkHlP8gdKthqfElF6fe9b/h0QJWe1kNsWQn6K75WQfwMAAP//
 eVpV+1MEAAA=`,
+			length: 1107,
 		},
 		"github.com/jawher/mow.cli/internal/flow": EncodedLicense{
-			Name: "MIT",
-			Text: `
+			Name:   "MIT",
+			Text:   `
 H4sIAAAAAAAC/3xRvY7jNhjs+RSDre4AYvODVOm4Em0xkUiDos9xSUv0ioEsGiIVw28fUPbeYVNEjcDv
 Z+abGfz/ZwaHRhjUvnNTdIQU4Xqf/fuQ8KX7il9//uU3ij/sbXAzmrDEaAnZufniY/Rhgo8Y3OxOd7zP
 dkqupzjPziGc0Q12fncUKcBOd1zdHMOEcErWT356h0UXrncSzkiDj4jhnG52drBTDxtj6LxNrkcfuuXi
@@ -77,10 +80,11 @@ pGFvohbmSMlGGJkxN0qDYce0EcW+Zhq7vd6ploPJElJJITdayC1vuDSvEBJSgX/j0qCtWF1nKsL2plI6
 34dC7Y5abCuDStUl1y3eOGrB3mr+oJJHFDUTDUXJGrbl65YyFdckjz2uw6HiuZT5mAQrjFAyyyiUNJoV
 hsIobb6vHkTLKZgWbTZko1VDSbZTbfKIkHlP8gdKthqfElF6fe9b/h0QJWe1kNsWQn6K75WQfwMAAP//
 eVpV+1MEAAA=`,
+			length: 1107,
 		},
 		"github.com/jawher/mow.cli/internal/fsm": EncodedLicense{
-			Name: "MIT",
-			Text: `
+			Name:   "MIT",
+			Text:   `
 H4sIAAAAAAAC/3xRvY7jNhjs+RSDre4AYvODVOm4Em0xkUiDos9xSUv0ioEsGiIVw28fUPbeYVNEjcDv
 Z+abGfz/ZwaHRhjUvnNTdIQU4Xqf/fuQ8KX7il9//uU3ij/sbXAzmrDEaAnZufniY/Rhgo8Y3OxOd7zP
 dkqupzjPziGc0Q12fncUKcBOd1zdHMOEcErWT356h0UXrncSzkiDj4jhnG52drBTDxtj6LxNrkcfuuXi
@@ -93,10 +97,11 @@ pGFvohbmSMlGGJkxN0qDYce0EcW+Zhq7vd6ploPJElJJITdayC1vuDSvEBJSgX/j0qCtWF1nKsL2plI6
 34dC7Y5abCuDStUl1y3eOGrB3mr+oJJHFDUTDUXJGrbl65YyFdckjz2uw6HiuZT5mAQrjFAyyyiUNJoV
 hsIobb6vHkTLKZgWbTZko1VDSbZTbfKIkHlP8gdKthqfElF6fe9b/h0QJWe1kNsWQn6K75WQfwMAAP//
 eVpV+1MEAAA=`,
+			length: 1107,
 		},
 		"github.com/jawher/mow.cli/internal/lexer": EncodedLicense{
-			Name: "MIT",
-			Text: `
+			Name:   "MIT",
+			Text:   `
 H4sIAAAAAAAC/3xRvY7jNhjs+RSDre4AYvODVOm4Em0xkUiDos9xSUv0ioEsGiIVw28fUPbeYVNEjcDv
 Z+abGfz/ZwaHRhjUvnNTdIQU4Xqf/fuQ8KX7il9//uU3ij/sbXAzmrDEaAnZufniY/Rhgo8Y3OxOd7zP
 dkqupzjPziGc0Q12fncUKcBOd1zdHMOEcErWT356h0UXrncSzkiDj4jhnG52drBTDxtj6LxNrkcfuuXi
@@ -109,10 +114,11 @@ pGFvohbmSMlGGJkxN0qDYce0EcW+Zhq7vd6ploPJElJJITdayC1vuDSvEBJSgX/j0qCtWF1nKsL2plI6
 34dC7Y5abCuDStUl1y3eOGrB3mr+oJJHFDUTDUXJGrbl65YyFdckjz2uw6HiuZT5mAQrjFAyyyiUNJoV
 hsIobb6vHkTLKZgWbTZko1VDSbZTbfKIkHlP8gdKthqfElF6fe9b/h0QJWe1kNsWQn6K75WQfwMAAP//
 eVpV+1MEAAA=`,
+			length: 1107,
 		},
 		"github.com/jawher/mow.cli/internal/matcher": EncodedLicense{
-			Name: "MIT",
-			Text: `
+			Name:   "MIT",
+			Text:   `
 H4sIAAAAAAAC/3xRvY7jNhjs+RSDre4AYvODVOm4Em0xkUiDos9xSUv0ioEsGiIVw28fUPbeYVNEjcDv
 Z+abGfz/ZwaHRhjUvnNTdIQU4Xqf/fuQ8KX7il9//uU3ij/sbXAzmrDEaAnZufniY/Rhgo8Y3OxOd7zP
 dkqupzjPziGc0Q12fncUKcBOd1zdHMOEcErWT356h0UXrncSzkiDj4jhnG52drBTDxtj6LxNrkcfuuXi
@@ -125,10 +131,11 @@ pGFvohbmSMlGGJkxN0qDYce0EcW+Zhq7vd6ploPJElJJITdayC1vuDSvEBJSgX/j0qCtWF1nKsL2plI6
 34dC7Y5abCuDStUl1y3eOGrB3mr+oJJHFDUTDUXJGrbl65YyFdckjz2uw6HiuZT5mAQrjFAyyyiUNJoV
 hsIobb6vHkTLKZgWbTZko1VDSbZTbfKIkHlP8gdKthqfElF6fe9b/h0QJWe1kNsWQn6K75WQfwMAAP//
 eVpV+1MEAAA=`,
+			length: 1107,
 		},
 		"github.com/jawher/mow.cli/internal/parser": EncodedLicense{
-			Name: "MIT",
-			Text: `
+			Name:   "MIT",
+			Text:   `
 H4sIAAAAAAAC/3xRvY7jNhjs+RSDre4AYvODVOm4Em0xkUiDos9xSUv0ioEsGiIVw28fUPbeYVNEjcDv
 Z+abGfz/ZwaHRhjUvnNTdIQU4Xqf/fuQ8KX7il9//uU3ij/sbXAzmrDEaAnZufniY/Rhgo8Y3OxOd7zP
 dkqupzjPziGc0Q12fncUKcBOd1zdHMOEcErWT356h0UXrncSzkiDj4jhnG52drBTDxtj6LxNrkcfuuXi
@@ -141,10 +148,11 @@ pGFvohbmSMlGGJkxN0qDYce0EcW+Zhq7vd6ploPJElJJITdayC1vuDSvEBJSgX/j0qCtWF1nKsL2plI6
 34dC7Y5abCuDStUl1y3eOGrB3mr+oJJHFDUTDUXJGrbl65YyFdckjz2uw6HiuZT5mAQrjFAyyyiUNJoV
 hsIobb6vHkTLKZgWbTZko1VDSbZTbfKIkHlP8gdKthqfElF6fe9b/h0QJWe1kNsWQn6K75WQfwMAAP//
 eVpV+1MEAAA=`,
+			length: 1107,
 		},
 		"github.com/jawher/mow.cli/internal/values": EncodedLicense{
-			Name: "MIT",
-			Text: `
+			Name:   "MIT",
+			Text:   `
 H4sIAAAAAAAC/3xRvY7jNhjs+RSDre4AYvODVOm4Em0xkUiDos9xSUv0ioEsGiIVw28fUPbeYVNEjcDv
 Z+abGfz/ZwaHRhjUvnNTdIQU4Xqf/fuQ8KX7il9//uU3ij/sbXAzmrDEaAnZufniY/Rhgo8Y3OxOd7zP
 dkqupzjPziGc0Q12fncUKcBOd1zdHMOEcErWT356h0UXrncSzkiDj4jhnG52drBTDxtj6LxNrkcfuuXi
@@ -157,10 +165,11 @@ pGFvohbmSMlGGJkxN0qDYce0EcW+Zhq7vd6ploPJElJJITdayC1vuDSvEBJSgX/j0qCtWF1nKsL2plI6
 34dC7Y5abCuDStUl1y3eOGrB3mr+oJJHFDUTDUXJGrbl65YyFdckjz2uw6HiuZT5mAQrjFAyyyiUNJoV
 hsIobb6vHkTLKZgWbTZko1VDSbZTbfKIkHlP8gdKthqfElF6fe9b/h0QJWe1kNsWQn6K75WQfwMAAP//
 eVpV+1MEAAA=`,
+			length: 1107,
 		},
 		"github.com/kopoli/appkit": EncodedLicense{
-			Name: "MIT",
-			Text: `
+			Name:   "MIT",
+			Text:   `
 H4sIAAAAAAAC/1xRzW7jNhC+8yk+5JQAQrrYY2+MRVtEJNKg6HV9pCU6YiuLhkg3yNsXIzu7zZ4Eceb7
 HTt4NNKiDp2fksdjI+0TY6t4+ZjD25Dx2D3h+7fv3/DqxtHj1U3/uNkztvXzOaQU4oSQMPjZHz/wNrsp
 +77AafYe8YRucPObL5Aj3PSBi59TnBCP2YUpTG9w6OLlg8UT8hASUjzldzd7uKmHSyl2wWXfo4/d9eyn
@@ -173,10 +182,11 @@ RdbSHgq2llYR51obcGy5sXK1q7nBdme2uhXgqoTSSqq1kWojGqHsM6SC0hA/hLJoK17XJMX4zlbakD+s
 9PZg5KayqHRdCtPiRaCW/KUWNyl1wKrmsilQ8oZvxILSthKG0drNHfaVoCfS4wp8ZaVWFGOllTV8ZQtY
 bexP6F62ogA3sqVC1kY3BaM69ZpWpCKcEjcWqhpfLqLN8r9rxU9ClILXUm1aAlPEz+Vn9l8AAAD//7MD
 VDw4BAAA`,
+			length: 1080,
 		},
 		"github.com/kopoli/licrep/lib": EncodedLicense{
-			Name: "MIT",
-			Text: `
+			Name:   "MIT",
+			Text:   `
 H4sIAAAAAAAC/1xRzW6rOBTeI/EOn7pqJdT52Yw0Ozc4wSrYkXFuJksHnOIZgiPsTNW3Hx2S3ju9K4TP
 +X6PGRwaYVD7zk3R4bER5inP8mwVLh+zfxsSHrsn/P7rb3/g1Y6jw6ud/rGzo52tm88+Rh8m+IjBze74
 gbfZTsn1BU6zcwgndIOd31yBFGCnD1zcHMOEcEzWT356g0UXLh95Fk5Ig4+I4ZTe7exgpx42xtB5m1yP
@@ -189,10 +199,11 @@ JXhLbA3Xq4pJw15ELcyhyLO1MJJY10qDYcu0EatdzTS2O71VLQeTJaSSQq61kBvecGmeISSkAv/GpUFb
 sbomrTxjO1MpTRaxUtuDFpvKoFJ1yXWLF45asJea37TkAauaiaZAyRq24QtKmYrrPKO9m0HsK05vpMgk
 2MoIJSnJSkmj2coUMEqb79i9aHkBpkVLnay1aoo8o07VmnaEJKDkNxrqG1/OovTyv2v5d0aUnNVCbloC
 Lyk/t5/z7L8AAAD//1HmlTNNBAAA`,
+			length: 1101,
 		},
 		"github.com/ryanuber/go-license": EncodedLicense{
-			Name: "MIT",
-			Text: `
+			Name:   "MIT",
+			Text:   `
 H4sIAAAAAAAC/1xRzW7jNhC+8yk+5JQAQvqDnnpjLNoiKpEGRa/royzREQuZNES6gd++GNnZbfYkiDPf
 79jRoZEWte9dSA7PjbQvjK3i5Tb79zHjuX/B77/+9gfMrQvYHd3M2NbNZ5+SjwE+YXSzO97wPnchu6HA
 aXYO8YR+7OZ3VyBHdOGGi5tTDIjH3Pngwzs69PFyY/GEPPqEFE/5o5sdujCgSyn2vstuwBD769mF3GXS
@@ -205,10 +216,11 @@ eyjYWlpFnGttwLHlxsrVruYG253Z6laAqxJKK6nWRqqNaISyr5AKSkN8E8qirXhdkxTjO1tpQ/6w0tuD
 kZvKotJ1KUyLN4Fa8rda3KXUAauay6ZAyRu+EQtK20oYRmt3d9hXgp5IjyvwlZVaUYyVVtbwlS1gtbHf
 oXvZigLcyJYKWRvdFIzq1GtakYpwStxZqGp8uYg2y/+uFd8JUQpeS7VpCUwRP5df2X8BAAD//9UdrcM0
 BAAA`,
+			length: 1076,
 		},
 	}
 
-	decode := func(input string) (string, error) {
+	decode := func(input string, length int64) (string, error) {
 		data := &bytes.Buffer{}
 		br := base64.NewDecoder(base64.StdEncoding, strings.NewReader(input))
 
@@ -217,7 +229,7 @@ BAAA`,
 			return "", err
 		}
 
-		_, err = io.Copy(data, r)
+		_, err = io.CopyN(data, r, length)
 		if err != nil {
 			return "", err
 		}
@@ -233,7 +245,7 @@ BAAA`,
 	ret := make(map[string]LicrepLicense)
 
 	for k := range data {
-		text, err := decode(data[k].Text)
+		text, err := decode(data[k].Text, data[k].length)
 		if err != nil {
 			return nil, err
 		}
