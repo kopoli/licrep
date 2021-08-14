@@ -173,9 +173,11 @@ func GenerateEmbeddedLicenses(opts appkit.Options, pkgs []Package) (err error) {
 		}
 		licenseData.WriteString(fmt.Sprintf(`
 		"%s": EncodedLicense{
-			Name: "%s",
-			Text: `+"`\n%s`"+`,
-		},`, pkgs[i].ImportPath, pkgs[i].License, str))
+			Name:   "%s",
+			Text:   `+"`\n%s`"+`,
+			length: %d,
+		},`, pkgs[i].ImportPath, pkgs[i].License, str,
+			len(pkgs[i].LicenseString)))
 	}
 
 	pkg, err := determinePackage(opts, pkgs)
@@ -244,14 +246,15 @@ type {{.prefix}}License struct {
 // the package names.
 func {{.prefix}}GetLicenses() (map[string]{{.prefix}}License, error) {
 	type EncodedLicense struct {
-		Name string
-		Text string
+		Name   string
+		Text   string
+                length int64
 	}
 	data := map[string]EncodedLicense{
 {{.data}}
 	}
 
-	decode := func(input string) (string, error) {
+	decode := func(input string, length int64) (string, error) {
 		data := &bytes.Buffer{}
 		br := base64.NewDecoder(base64.StdEncoding, strings.NewReader(input))
 
@@ -260,7 +263,7 @@ func {{.prefix}}GetLicenses() (map[string]{{.prefix}}License, error) {
 			return "", err
 		}
 
-		_, err = io.Copy(data, r)
+		_, err = io.CopyN(data, r, length)
 		if err != nil {
 			return "", err
 		}
@@ -276,7 +279,7 @@ func {{.prefix}}GetLicenses() (map[string]{{.prefix}}License, error) {
 	ret := make(map[string]{{.prefix}}License)
 
 	for k := range data {
-		text, err := decode(data[k].Text)
+		text, err := decode(data[k].Text, data[k].length)
 		if err != nil {
 			return nil, err
 		}
