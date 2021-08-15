@@ -21,6 +21,7 @@ func Test_chunker_Write(t *testing.T) {
 		{"Shorter first line", 1, 2, "abcd", "a\nbc\nd"},
 	}
 	for _, tt := range tests {
+		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
 			buf := &bytes.Buffer{}
 			w := &chunker{
