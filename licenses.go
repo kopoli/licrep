@@ -1,4 +1,4 @@
-// Generated with by licrep version v0.3.1
+// Generated with by licrep version v0.3.3
 // https://github.com/kopoli/licrep
 // Called with: licrep -o licenses.go --prefix Licrep
 
@@ -27,13 +27,13 @@ func LicrepGetLicenses() (map[string]LicrepLicense, error) {
 	type EncodedLicense struct {
 		Name   string
 		Text   string
-                length int64
+		length int64
 	}
 	data := map[string]EncodedLicense{
 
-		"github.com/jawher/mow.cli": EncodedLicense{
-			Name:   "MIT",
-			Text:   `
+		"github.com/jawher/mow.cli": {
+			Name: "MIT",
+			Text: `
 H4sIAAAAAAAC/3xRvY7jNhjs+RSDre4AYvODVOm4Em0xkUiDos9xSUv0ioEsGiIVw28fUPbeYVNEjcDv
 Z+abGfz/ZwaHRhjUvnNTdIQU4Xqf/fuQ8KX7il9//uU3ij/sbXAzmrDEaAnZufniY/Rhgo8Y3OxOd7zP
 dkqupzjPziGc0Q12fncUKcBOd1zdHMOEcErWT356h0UXrncSzkiDj4jhnG52drBTDxtj6LxNrkcfuuXi
@@ -48,9 +48,9 @@ hsIobb6vHkTLKZgWbTZko1VDSbZTbfKIkHlP8gdKthqfElF6fe9b/h0QJWe1kNsWQn6K75WQfwMAAP//
 eVpV+1MEAAA=`,
 			length: 1107,
 		},
-		"github.com/jawher/mow.cli/internal/container": EncodedLicense{
-			Name:   "MIT",
-			Text:   `
+		"github.com/jawher/mow.cli/internal/container": {
+			Name: "MIT",
+			Text: `
 H4sIAAAAAAAC/3xRvY7jNhjs+RSDre4AYvODVOm4Em0xkUiDos9xSUv0ioEsGiIVw28fUPbeYVNEjcDv
 Z+abGfz/ZwaHRhjUvnNTdIQU4Xqf/fuQ8KX7il9//uU3ij/sbXAzmrDEaAnZufniY/Rhgo8Y3OxOd7zP
 dkqupzjPziGc0Q12fncUKcBOd1zdHMOEcErWT356h0UXrncSzkiDj4jhnG52drBTDxtj6LxNrkcfuuXi
@@ -65,9 +65,9 @@ hsIobb6vHkTLKZgWbTZko1VDSbZTbfKIkHlP8gdKthqfElF6fe9b/h0QJWe1kNsWQn6K75WQfwMAAP//
 eVpV+1MEAAA=`,
 			length: 1107,
 		},
-		"github.com/jawher/mow.cli/internal/flow": EncodedLicense{
-			Name:   "MIT",
-			Text:   `
+		"github.com/jawher/mow.cli/internal/flow": {
+			Name: "MIT",
+			Text: `
 H4sIAAAAAAAC/3xRvY7jNhjs+RSDre4AYvODVOm4Em0xkUiDos9xSUv0ioEsGiIVw28fUPbeYVNEjcDv
 Z+abGfz/ZwaHRhjUvnNTdIQU4Xqf/fuQ8KX7il9//uU3ij/sbXAzmrDEaAnZufniY/Rhgo8Y3OxOd7zP
 dkqupzjPziGc0Q12fncUKcBOd1zdHMOEcErWT356h0UXrncSzkiDj4jhnG52drBTDxtj6LxNrkcfuuXi
@@ -82,9 +82,9 @@ hsIobb6vHkTLKZgWbTZko1VDSbZTbfKIkHlP8gdKthqfElF6fe9b/h0QJWe1kNsWQn6K75WQfwMAAP//
 eVpV+1MEAAA=`,
 			length: 1107,
 		},
-		"github.com/jawher/mow.cli/internal/fsm": EncodedLicense{
-			Name:   "MIT",
-			Text:   `
+		"github.com/jawher/mow.cli/internal/fsm": {
+			Name: "MIT",
+			Text: `
 H4sIAAAAAAAC/3xRvY7jNhjs+RSDre4AYvODVOm4Em0xkUiDos9xSUv0ioEsGiIVw28fUPbeYVNEjcDv
 Z+abGfz/ZwaHRhjUvnNTdIQU4Xqf/fuQ8KX7il9//uU3ij/sbXAzmrDEaAnZufniY/Rhgo8Y3OxOd7zP
 dkqupzjPziGc0Q12fncUKcBOd1zdHMOEcErWT356h0UXrncSzkiDj4jhnG52drBTDxtj6LxNrkcfuuXi
@@ -99,9 +99,9 @@ hsIobb6vHkTLKZgWbTZko1VDSbZTbfKIkHlP8gdKthqfElF6fe9b/h0QJWe1kNsWQn6K75WQfwMAAP//
 eVpV+1MEAAA=`,
 			length: 1107,
 		},
-		"github.com/jawher/mow.cli/internal/lexer": EncodedLicense{
-			Name:   "MIT",
-			Text:   `
+		"github.com/jawher/mow.cli/internal/lexer": {
+			Name: "MIT",
+			Text: `
 H4sIAAAAAAAC/3xRvY7jNhjs+RSDre4AYvODVOm4Em0xkUiDos9xSUv0ioEsGiIVw28fUPbeYVNEjcDv
 Z+abGfz/ZwaHRhjUvnNTdIQU4Xqf/fuQ8KX7il9//uU3ij/sbXAzmrDEaAnZufniY/Rhgo8Y3OxOd7zP
 dkqupzjPziGc0Q12fncUKcBOd1zdHMOEcErWT356h0UXrncSzkiDj4jhnG52drBTDxtj6LxNrkcfuuXi
@@ -116,9 +116,9 @@ hsIobb6vHkTLKZgWbTZko1VDSbZTbfKIkHlP8gdKthqfElF6fe9b/h0QJWe1kNsWQn6K75WQfwMAAP//
 eVpV+1MEAAA=`,
 			length: 1107,
 		},
-		"github.com/jawher/mow.cli/internal/matcher": EncodedLicense{
-			Name:   "MIT",
-			Text:   `
+		"github.com/jawher/mow.cli/internal/matcher": {
+			Name: "MIT",
+			Text: `
 H4sIAAAAAAAC/3xRvY7jNhjs+RSDre4AYvODVOm4Em0xkUiDos9xSUv0ioEsGiIVw28fUPbeYVNEjcDv
 Z+abGfz/ZwaHRhjUvnNTdIQU4Xqf/fuQ8KX7il9//uU3ij/sbXAzmrDEaAnZufniY/Rhgo8Y3OxOd7zP
 dkqupzjPziGc0Q12fncUKcBOd1zdHMOEcErWT356h0UXrncSzkiDj4jhnG52drBTDxtj6LxNrkcfuuXi
@@ -133,9 +133,9 @@ hsIobb6vHkTLKZgWbTZko1VDSbZTbfKIkHlP8gdKthqfElF6fe9b/h0QJWe1kNsWQn6K75WQfwMAAP//
 eVpV+1MEAAA=`,
 			length: 1107,
 		},
-		"github.com/jawher/mow.cli/internal/parser": EncodedLicense{
-			Name:   "MIT",
-			Text:   `
+		"github.com/jawher/mow.cli/internal/parser": {
+			Name: "MIT",
+			Text: `
 H4sIAAAAAAAC/3xRvY7jNhjs+RSDre4AYvODVOm4Em0xkUiDos9xSUv0ioEsGiIVw28fUPbeYVNEjcDv
 Z+abGfz/ZwaHRhjUvnNTdIQU4Xqf/fuQ8KX7il9//uU3ij/sbXAzmrDEaAnZufniY/Rhgo8Y3OxOd7zP
 dkqupzjPziGc0Q12fncUKcBOd1zdHMOEcErWT356h0UXrncSzkiDj4jhnG52drBTDxtj6LxNrkcfuuXi
@@ -150,9 +150,9 @@ hsIobb6vHkTLKZgWbTZko1VDSbZTbfKIkHlP8gdKthqfElF6fe9b/h0QJWe1kNsWQn6K75WQfwMAAP//
 eVpV+1MEAAA=`,
 			length: 1107,
 		},
-		"github.com/jawher/mow.cli/internal/values": EncodedLicense{
-			Name:   "MIT",
-			Text:   `
+		"github.com/jawher/mow.cli/internal/values": {
+			Name: "MIT",
+			Text: `
 H4sIAAAAAAAC/3xRvY7jNhjs+RSDre4AYvODVOm4Em0xkUiDos9xSUv0ioEsGiIVw28fUPbeYVNEjcDv
 Z+abGfz/ZwaHRhjUvnNTdIQU4Xqf/fuQ8KX7il9//uU3ij/sbXAzmrDEaAnZufniY/Rhgo8Y3OxOd7zP
 dkqupzjPziGc0Q12fncUKcBOd1zdHMOEcErWT356h0UXrncSzkiDj4jhnG52drBTDxtj6LxNrkcfuuXi
@@ -167,9 +167,9 @@ hsIobb6vHkTLKZgWbTZko1VDSbZTbfKIkHlP8gdKthqfElF6fe9b/h0QJWe1kNsWQn6K75WQfwMAAP//
 eVpV+1MEAAA=`,
 			length: 1107,
 		},
-		"github.com/kopoli/appkit": EncodedLicense{
-			Name:   "MIT",
-			Text:   `
+		"github.com/kopoli/appkit": {
+			Name: "MIT",
+			Text: `
 H4sIAAAAAAAC/1xRzW7jNhC+8yk+5JQAQrrYY2+MRVtEJNKg6HV9pCU6YiuLhkg3yNsXIzu7zZ4Eceb7
 HTt4NNKiDp2fksdjI+0TY6t4+ZjD25Dx2D3h+7fv3/DqxtHj1U3/uNkztvXzOaQU4oSQMPjZHz/wNrsp
 +77AafYe8YRucPObL5Aj3PSBi59TnBCP2YUpTG9w6OLlg8UT8hASUjzldzd7uKmHSyl2wWXfo4/d9eyn
@@ -184,9 +184,9 @@ bexP6F62ogA3sqVC1kY3BaM69ZpWpCKcEjcWqhpfLqLN8r9rxU9ClILXUm1aAlPEz+Vn9l8AAAD//7MD
 VDw4BAAA`,
 			length: 1080,
 		},
-		"github.com/kopoli/licrep/lib": EncodedLicense{
-			Name:   "MIT",
-			Text:   `
+		"github.com/kopoli/licrep/lib": {
+			Name: "MIT",
+			Text: `
 H4sIAAAAAAAC/1xRzW6rOBTeI/EOn7pqJdT52Yw0Ozc4wSrYkXFuJksHnOIZgiPsTNW3Hx2S3ju9K4TP
 +X6PGRwaYVD7zk3R4bER5inP8mwVLh+zfxsSHrsn/P7rb3/g1Y6jw6ud/rGzo52tm88+Rh8m+IjBze74
 gbfZTsn1BU6zcwgndIOd31yBFGCnD1zcHMOEcEzWT356g0UXLh95Fk5Ig4+I4ZTe7exgpx42xtB5m1yP
@@ -201,9 +201,9 @@ sbomrTxjO1MpTRaxUtuDFpvKoFJ1yXWLF45asJea37TkAauaiaZAyRq24QtKmYrrPKO9m0HsK05vpMgk
 Lyk/t5/z7L8AAAD//1HmlTNNBAAA`,
 			length: 1101,
 		},
-		"github.com/ryanuber/go-license": EncodedLicense{
-			Name:   "MIT",
-			Text:   `
+		"github.com/ryanuber/go-license": {
+			Name: "MIT",
+			Text: `
 H4sIAAAAAAAC/1xRzW7jNhC+8yk+5JQAQvqDnnpjLNoiKpEGRa/royzREQuZNES6gd++GNnZbfYkiDPf
 79jRoZEWte9dSA7PjbQvjK3i5Tb79zHjuX/B77/+9gfMrQvYHd3M2NbNZ5+SjwE+YXSzO97wPnchu6HA
 aXYO8YR+7OZ3VyBHdOGGi5tTDIjH3Pngwzs69PFyY/GEPPqEFE/5o5sdujCgSyn2vstuwBD769mF3GXS
