@@ -61,20 +61,19 @@ func (w *chunker) Write(p []byte) (int, error) {
 }
 
 func encodeData(input string) (out string, err error) {
-
 	data := &bytes.Buffer{}
 	ch := &chunker{output: data}
 	bw := base64.NewEncoder(base64.StdEncoding, ch)
 	w, err := gzip.NewWriterLevel(bw, gzip.BestCompression)
 	if err != nil {
-		return
+		return "", err
 	}
 
 	_, err = w.Write([]byte(input))
 	err2 := w.Close()
 	err3 := bw.Close()
 	if err != nil {
-		return
+		return "", err
 	}
 	if err2 != nil {
 		err = err2
@@ -83,12 +82,11 @@ func encodeData(input string) (out string, err error) {
 		err = err3
 	}
 	if err != nil {
-		return
+		return "", err
 	}
 
 	out = data.String()
-	return
-
+	return out, nil
 }
 
 // FilterPackages filters out the ignored packages from the list
@@ -122,7 +120,7 @@ func FilterPackages(opts appkit.Options, pkgs []Package) (ret []Package) {
 
 // determinePackage determines the package that is written to the generated
 // file
-func determinePackage(opts appkit.Options, pkgs []Package) (string, error) {
+func determinePackage(opts appkit.Options) (string, error) {
 	pkg := opts.Get("package", "")
 
 	// Return the package given explicitly in the command line
@@ -160,15 +158,17 @@ func determinePackage(opts appkit.Options, pkgs []Package) (string, error) {
 // GenerateEmbeddedLicenses creates a compressed license representation to a
 // file or os.Stdout of the given Packages. The representation is go so it can
 // be built as part of a program.
-func GenerateEmbeddedLicenses(opts appkit.Options, pkgs []Package) (err error) {
+func GenerateEmbeddedLicenses(opts appkit.Options, pkgs []Package) error {
 	licenseData := &bytes.Buffer{}
 	var str string
+	var err error
+
 	for i := range pkgs {
 		str = ""
 		if pkgs[i].LicenseString != "" {
 			str, err = encodeData(pkgs[i].LicenseString)
 			if err != nil {
-				return
+				return err
 			}
 		}
 		licenseData.WriteString(fmt.Sprintf(`
@@ -180,9 +180,9 @@ func GenerateEmbeddedLicenses(opts appkit.Options, pkgs []Package) (err error) {
 			len(pkgs[i].LicenseString)))
 	}
 
-	pkg, err := determinePackage(opts, pkgs)
+	pkg, err := determinePackage(opts)
 	if err != nil {
-		return
+		return err
 	}
 
 	argmap := map[string]string{
@@ -201,7 +201,7 @@ func GenerateEmbeddedLicenses(opts appkit.Options, pkgs []Package) (err error) {
 		var fp *os.File
 		fp, err = os.Create(outfile)
 		if err != nil {
-			return
+			return err
 		}
 		out = fp
 		defer func() {
@@ -211,11 +211,11 @@ func GenerateEmbeddedLicenses(opts appkit.Options, pkgs []Package) (err error) {
 
 	tmpl, err := template.New("licrep").Parse(licenseTemplate)
 	if err != nil {
-		return
+		return err
 	}
 
 	err = tmpl.Execute(out, argmap)
-	return
+	return nil
 }
 
 const (

@@ -3,8 +3,8 @@ package licrep
 import (
 	"strings"
 
-	"github.com/kopoli/appkit"
 	cli "github.com/jawher/mow.cli"
+	"github.com/kopoli/appkit"
 )
 
 // Cli parses the command line interface

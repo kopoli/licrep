@@ -28,7 +28,7 @@ func findLicense(dir, root string) (ret *license.License, err error) {
 	d, _ := filepath.Split(dir)
 	d = filepath.Clean(d)
 	if d == "" || d == root {
-		return nil, errors.New("No license found in parent directories")
+		return nil, errors.New("no license found in parent directories")
 	}
 
 	ret, err = license.NewFromDir(dir)
@@ -48,16 +48,16 @@ func GetPackages(pkgname string, dir string) (ret []Package, err error) {
 	findImports = func(name, dir string) (err error) {
 		pkg, err := build.Import(name, dir, 0)
 		if err != nil {
-			return
+			return err
 		}
 
 		if pkg.Goroot {
-			return
+			return nil
 		}
 
 		_, ok := imports[pkg.ImportPath]
 		if ok {
-			return
+			return nil
 		}
 
 		p := Package{
@@ -79,10 +79,13 @@ func GetPackages(pkgname string, dir string) (ret []Package, err error) {
 		for i := range pkg.Imports {
 			err = findImports(pkg.Imports[i], pkg.Dir)
 		}
-		return
+		return err
 	}
 
 	err = findImports(pkgname, dir)
+	if err != nil {
+		return nil, err
+	}
 
 	var names []string
 	for i := range imports {
@@ -97,5 +100,5 @@ func GetPackages(pkgname string, dir string) (ret []Package, err error) {
 		j++
 	}
 
-	return
+	return ret, nil
 }

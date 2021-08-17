@@ -22,10 +22,10 @@ var (
 	progVersion = "" + version
 )
 
-func fault(err error, message string, arg ...string) {
+func fault(err error, message string) {
 	if err != nil {
-		_, _ = fmt.Fprintf(os.Stderr, "Error: %s%s: %s\n",
-			message, strings.Join(arg, " "), err)
+		_, _ = fmt.Fprintf(os.Stderr, "Error: %s: %s\n",
+			message, err)
 		os.Exit(1)
 	}
 }
