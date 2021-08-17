@@ -172,9 +172,9 @@ func GenerateEmbeddedLicenses(opts appkit.Options, pkgs []Package) error {
 			}
 		}
 		licenseData.WriteString(fmt.Sprintf(`
-		"%s": EncodedLicense{
-			Name:   "%s",
-			Text:   `+"`\n%s`"+`,
+		"%s": {
+			Name: "%s",
+			Text: `+"`\n%s`"+`,
 			length: %d,
 		},`, pkgs[i].ImportPath, pkgs[i].License, str,
 			len(pkgs[i].LicenseString)))
@@ -248,7 +248,7 @@ func {{.prefix}}GetLicenses() (map[string]{{.prefix}}License, error) {
 	type EncodedLicense struct {
 		Name   string
 		Text   string
-                length int64
+		length int64
 	}
 	data := map[string]EncodedLicense{
 {{.data}}
